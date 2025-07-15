@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Download App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f2f5;
+      padding: 30px;
+      text-align: center;
+    }
+    img {
+      width: 96px;
+      height: 96px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin: 10px 0;
+    }
+    .button {
+      padding: 12px 25px;
+      background: green;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-top: 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="content">
+    <h2>Loading...</h2>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const appFile = params.get("app");
+
+    if (appFile && appFile.endsWith(".apk")) {
+      const appName = appFile.replace(".apk", "").replaceAll("_", " ").replace(/\b\w/g, l => l.toUpperCase());
+      const iconName = appName + ".png";
+
+      document.getElementById("content").innerHTML = `
+        <img src="${iconName}" onerror="this.src='default-icon.png'">
+        <h2>${appName}</h2>
+        <a class="button" href="${appFile}" download>Download APK</a>
+      `;
+    } else {
+      document.getElementById("content").innerHTML = "<p>App not found.</p>";
+    }
+  </script>
+
+</body>
+</html>

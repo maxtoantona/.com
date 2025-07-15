@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Apps</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+    }
+    .app-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .app-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      margin-right: 15px;
+    }
+    .app-card h3 {
+      margin: 0 0 8px;
+    }
+    .app-card p {
+      margin: 0;
+      color: #555;
+    }
+    .app-card a {
+      text-decoration: none;
+      color: inherit;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Available Apps</h2>
+
+  <div id="app-list"></div>
+
+  <script>
+    const apps = [
+      {
+        name: "Age Difference",
+        apk: "Age Difference.apk",
+        description: "This app helps you calculate age difference between two dates.",
+        image: "Age Difference.png"
+      },
+      {
+        name: "Text Generator",
+        apk: "Text Generator.apk",
+        description: "Repeat any text multiple times by entering input and count.",
+        image: "Text Generator.png"
+      }
+    ];
+
+    const container = document.getElementById("app-list");
+
+    apps.forEach(app => {
+      const div = document.createElement("div");
+      div.className = "app-card";
+      div.innerHTML = `
+        <a href="dawnload.html?app=${encodeURIComponent(app.apk)}">
+          <img src="${app.image}" alt="${app.name}" onerror="this.src='default-icon.png'">
+          <div>
+            <h3>${app.name}</h3>
+            <p>${app.description}</p>
+          </div>
+        </a>
+      `;
+      container.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
