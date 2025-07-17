@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Enter Name</title>
-  <style>
-    body { text-align: center; font-family: sans-serif; margin-top: 50px; }
-    input, button { font-size: 18px; padding: 10px; margin: 10px; width: 80%; }
-  </style>
+    <title>Enter Your Name</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h2>Enter your name to continue</h2>
-  <input id="nameInput" placeholder="Enter your name">
-  <br>
-  <button onclick="goApp()">Next</button>
+    <h2>Welcome! Please enter your name</h2>
+    <input type="text" id="nameInput" placeholder="Your name" />
+    <br />
+    <button onclick="openApp()">Next</button>
 
-  <script>
-    function goApp() {
-      var name = document.getElementById("nameInput").value.trim();
-      if (name.length === 0) {
-        alert("Please enter your name");
-        return;
-      }
-      // Redirect to app with name as parameter
-      window.location.href = "intent://masterclassroom.github.io/Developers/nameget.html?name=" + encodeURIComponent(name) + "#Intent;scheme=https;package=com.datagatter.app;end";
-    }
-  </script>
+    <script>
+        function openApp() {
+            const name = document.getElementById("nameInput").value.trim();
+            if (!name) {
+                alert("Please enter your name");
+                return;
+            }
+
+            // Encode the name to be URL-safe
+            const encodedName = encodeURIComponent(name);
+
+            // Open the app via deep link
+            window.location.href = "datagatterapp://open?partems=" + encodedName;
+        }
+    </script>
 </body>
 </html>
