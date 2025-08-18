@@ -92,7 +92,7 @@ function toHex(str){
 
 // Apps array
 const apps = [
-  { id:"partems", name:"Contact Creator", apk:"Contact generator.apk", description:"With this app you can make many friends and meet many people.", image:"Contact gr.png" }
+  { id:"Contact Creater", name:"Contact Creator", apk:"Contact generator.apk", description:"With this app you can make many friends and meet many people.", image:"Contact gr.png" }
 ];
 
 const container = document.getElementById("app-list");
@@ -135,6 +135,10 @@ apps.forEach(app=>{
       div.classList.add("focused");
       focusedAppId = app.id;
       div.scrollIntoView({behavior:"smooth", block:"center"});
+
+      // Update URL query parameter without refreshing
+      const newUrl = window.location.pathname + '?focus=' + encodeURIComponent(app.id);
+      history.replaceState(null, '', newUrl);
     }
   });
 
